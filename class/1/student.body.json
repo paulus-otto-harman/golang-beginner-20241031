@@ -1,0 +1,9 @@
+{
+    "name" : "student dua",
+    "user" : {
+        "id": 2
+    },
+    "batch": {
+        "id": 1
+    }
+}
