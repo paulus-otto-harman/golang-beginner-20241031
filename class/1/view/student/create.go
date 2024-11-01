@@ -22,24 +22,19 @@ func (screen *CreateStudent) Render(ctx context.Context, db *sql.DB) int {
 	}
 	fmt.Println(name)
 
-	util.BuildJson(struct {
-		Name  string      `json:"name"`
-		User  model.User  `json:"user"`
-		Batch model.Batch `json:"batch"`
-	}{
+	util.BuildJson(model.Student{
 		Name:  name,
 		User:  model.User{Id: 2},
 		Batch: model.Batch{Id: 1},
-	},
-		"body")
+	}, "body")
 
 	handler.StudentRegistration(db)
 
 	response := model.Response{}
 	util.ReadJson(&response, "response")
-	//fmt.Println(response)
+	
 	if response.StatusCode == 200 {
-		gola.Wait("Press Enter to continue")
+		fmt.Println("Student successfully registered")
 	}
 
 	return util.GoBackOrNot()
