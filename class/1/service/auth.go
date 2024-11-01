@@ -3,6 +3,7 @@ package service
 import (
 	"20241031/class/1/model"
 	"20241031/class/1/repository"
+	"20241031/class/1/util"
 )
 
 type AuthService struct {
@@ -13,20 +14,13 @@ func InitAuthService(repo repository.User) *UserService {
 	return &UserService{User: repo}
 }
 
-func (repo *UserService) Login(user model.User) (*model.Response, error) {
-
+func (repo *UserService) Login(user model.User) *model.Response {
 	appUser, err := repo.User.Authenticate(&user)
 
-	response := model.Response{}
 	if err != nil {
-		//return util.BuildResponse()
-		response.StatusCode = 401
-		response.Message = "login fail"
-		response.Data = err.Error()
-		return &response, err
+		return util.BuildResponse(401, "login fail", struct {
+			Message string
+		}{Message: err.Error()})
 	}
-	response.StatusCode = 200
-	response.Message = "login success"
-	response.Data = appUser
-	return &response, nil
+	return util.BuildResponse(200, "login success", appUser)
 }

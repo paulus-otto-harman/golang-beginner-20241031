@@ -1,1 +1,1 @@
-{"StatusCode":401,"Message":"login fail","Data":"sql: no rows in result set"}
+{"StatusCode":200,"Message":"login success","Data":{"Id":3,"Username":"user1","Password":"x","Active":false,"Role":"admin"}}
