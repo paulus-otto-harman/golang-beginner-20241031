@@ -2,6 +2,7 @@ package student
 
 import (
 	handler "20241031/class/1/handler/student"
+	userhandler "20241031/class/1/handler/user"
 	"20241031/class/1/model"
 	"20241031/class/1/util"
 	"context"
@@ -20,19 +21,34 @@ func (screen *CreateStudent) Render(ctx context.Context, db *sql.DB) int {
 	if name == "0" {
 		return 0
 	}
-	fmt.Println(name)
+	username, _ := gola.ToString(gola.Input(gola.Args(gola.P("label", fmt.Sprintf("%s :", "Enter Student's username")))))
+
+	util.BuildJson(model.User{
+		Username: username,
+		Password: "x",
+		Active:   true,
+		Role:     "Student",
+	}, "body")
+	userhandler.CreateUser(db)
+	response := model.Response{}
+	util.ReadJson(&response, "response")
+	data := response.Data.(map[string]interface{})
+
+	var userId int
+	if value, ok := data["Id"]; ok {
+		userId = int(value.(float64))
+	}
 
 	util.BuildJson(model.Student{
 		Name:  name,
-		User:  model.User{Id: 2},
+		User:  model.User{Id: userId},
 		Batch: model.Batch{Id: 1},
 	}, "body")
-
 	handler.StudentRegistration(db)
 
-	response := model.Response{}
+	response = model.Response{}
 	util.ReadJson(&response, "response")
-	
+
 	if response.StatusCode == 200 {
 		fmt.Println("Student successfully registered")
 	}

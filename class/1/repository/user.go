@@ -14,8 +14,8 @@ func CreateUser(db *sql.DB) *User {
 }
 
 func (r *User) Create(user *model.User) error {
-	query := `INSERT INTO users (username,password) VALUES ($1, $2) RETURNING id`
-	err := r.Db.QueryRow(query, user.Username, user.Password).Scan(&user.Id)
+	query := `INSERT INTO users (username,password,active,role) VALUES ($1, $2, $3, $4) RETURNING id`
+	err := r.Db.QueryRow(query, user.Username, user.Password, user.Active, user.Role).Scan(&user.Id)
 	if err != nil {
 		return err
 	}

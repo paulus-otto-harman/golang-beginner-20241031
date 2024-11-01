@@ -1,1 +1,1 @@
-{"StatusCode":200,"Message":"Student Created","Data":{"id":9,"name":"satu","user":{"Id":2,"Username":"","Password":"","Active":false,"Role":""},"batch":{"Id":1,"Name":"","Class":{"Id":0,"Name":""}}}}
+{"StatusCode":200,"Message":"Student Created","Data":{"id":11,"name":"delapan","user":{"Id":12,"Username":"","Password":"","Active":false,"Role":""},"batch":{"Id":1,"Name":"","Class":{"Id":0,"Name":""}}}}
