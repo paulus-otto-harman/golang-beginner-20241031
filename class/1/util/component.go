@@ -17,7 +17,7 @@ func H1(title string) {
 
 	fmt.Println(renderTimeout())
 
-	fmt.Printf("\n%s\n\n", gola.Tf(gola.Bold, fmt.Sprintf("%s %s - %s %s", "===", AppName, title, "==="), gola.LightBlue))
+	fmt.Printf("%s\n\n", gola.Tf(gola.Bold, fmt.Sprintf("%s %s - %s %s", "===", AppName, title, "==="), gola.LightBlue))
 }
 
 func Select(options map[string]interface{}, label string) string {

@@ -10,7 +10,7 @@ import (
 
 func sessionTimeout(timeout int) time.Duration {
 	if timeout == 0 {
-		return time.Until(time.Now().AddDate(10, 0, 0))
+		return time.Until(time.Now().AddDate(100, 0, 0))
 	}
 	return time.Duration(timeout) * time.Second
 }

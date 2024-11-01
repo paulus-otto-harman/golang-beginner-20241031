@@ -9,7 +9,7 @@ import (
 
 func BuildJson(s interface{}, filename string) {
 
-	file, err := os.Create(fmt.Sprintf("%s.json", filename))
+	file, err := os.Create(fmt.Sprintf("requestresponse/%s.json", filename))
 	if err != nil {
 		fmt.Println("Error creating file:", err)
 		return
@@ -26,7 +26,7 @@ func BuildJson(s interface{}, filename string) {
 
 func ReadJson(s interface{}, filename string) {
 
-	file, err := os.Open(fmt.Sprintf("%s.json", filename))
+	file, err := os.Open(fmt.Sprintf("requestresponse/%s.json", filename))
 
 	if err != nil {
 		fmt.Println("build JSON Error : ", err)

@@ -20,7 +20,9 @@ func (repo *UserService) Login(user model.User) *model.Response {
 	if err != nil {
 		return util.BuildResponse(401, "login fail", struct {
 			Message string
-		}{Message: err.Error()})
+		}{
+			Message: err.Error(),
+		})
 	}
 	return util.BuildResponse(200, "login success", appUser)
 }
