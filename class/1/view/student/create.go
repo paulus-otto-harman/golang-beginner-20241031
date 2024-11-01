@@ -23,6 +23,8 @@ func (screen *CreateStudent) Render(ctx context.Context, db *sql.DB) int {
 	}
 	username, _ := gola.ToString(gola.Input(gola.Args(gola.P("label", fmt.Sprintf("%s :", "Enter Student's username")))))
 
+	tx, _ := db.Begin()
+
 	util.BuildJson(model.User{
 		Username: username,
 		Password: "x",
@@ -50,8 +52,11 @@ func (screen *CreateStudent) Render(ctx context.Context, db *sql.DB) int {
 	util.ReadJson(&response, "response")
 
 	if response.StatusCode == 200 {
+		tx.Commit()
+
 		fmt.Println("Student successfully registered")
 	}
+	tx.Rollback()
 
 	return util.GoBackOrNot()
 }
