@@ -22,7 +22,7 @@ func (screen *Student) Render(ctx context.Context, db *sql.DB) int {
 	fmt.Println()
 	fmt.Println("[0] Return")
 
-	menuItem, _ := gola.Input(gola.Args(gola.P("type", "number"), gola.P("label", fmt.Sprintf("%s :", "Pilih [1]-[4] atau [0] untuk Kembali"))))
+	menuItem, _ := gola.Input(gola.Args(gola.P("type", "number"), gola.P("label", fmt.Sprintf("%s :", "Select [1]-[4] or [0] to return"))))
 	switch menuItem.(int) {
 	case 0:
 		return 0

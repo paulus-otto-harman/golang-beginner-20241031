@@ -21,7 +21,7 @@ func (home *Home) Render(ctx context.Context, db *sql.DB) int {
 	fmt.Println()
 	fmt.Println("[0] Logout")
 
-	menuItem, _ := gola.Input(gola.Args(gola.P("type", "number"), gola.P("label", fmt.Sprintf("%s :", "Pilih [1]-[3] atau [0] untuk Logout"))))
+	menuItem, _ := gola.Input(gola.Args(gola.P("type", "number"), gola.P("label", fmt.Sprintf("%s :", "Select [1]-[3] or [0] to Logout"))))
 	switch menuItem.(int) {
 	case 0:
 		home.isLogout = true

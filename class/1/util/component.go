@@ -5,11 +5,17 @@ import (
 	gola "github.com/paulus-otto-harman/golang-module"
 )
 
+func renderTimeout() string {
+	if SessionTimeout != 0 {
+		return fmt.Sprintf("\n%s\n", gola.Tf(gola.Bold, fmt.Sprintf("Timeout %d seconds", SessionTimeout), gola.LightYellow))
+	}
+	return fmt.Sprintf("\n%s\n", gola.Tf(gola.Bold, "Timeout Disabled", gola.LightGreen))
+}
+
 func H1(title string) {
 	gola.ClearScreen()
-	if SessionTimeout == 0 {
-		fmt.Printf("\n%s\n", gola.Tf(gola.Bold, "Timeout Disabled", gola.LightGreen))
-	}
+
+	fmt.Println(renderTimeout())
 
 	fmt.Printf("\n%s\n\n", gola.Tf(gola.Bold, fmt.Sprintf("%s %s - %s %s", "===", AppName, title, "==="), gola.LightBlue))
 }
