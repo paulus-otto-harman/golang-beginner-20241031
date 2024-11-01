@@ -24,3 +24,15 @@ func Select(options map[string]interface{}, label string) string {
 	}
 	return selected
 }
+
+func GoBackOrNot() int {
+	if cont, _ := gola.ToString(gola.Input(gola.Args(gola.P("label", "Press Enter to continue or [0] to return to previous menu")))); cont == "0" {
+		return 0
+	}
+	return -1
+}
+
+func WaitToGoBack() int {
+	gola.Wait("Press Enter to return to previous menu")
+	return 0
+}

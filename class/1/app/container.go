@@ -2,8 +2,8 @@ package app
 
 import (
 	"20241031/class/1/view"
-	"20241031/database"
 	"context"
+	"database/sql"
 	"sync"
 	"time"
 )
@@ -15,10 +15,7 @@ func sessionTimeout(timeout int) time.Duration {
 	return time.Duration(timeout) * time.Second
 }
 
-func Container(wg *sync.WaitGroup, timeout int) {
-	db := database.DbOpen("20241028a")
-	defer db.Close()
-
+func Container(wg *sync.WaitGroup, timeout int, db *sql.DB) {
 	defer wg.Done()
 	sessionLifetime := sessionTimeout(timeout)
 	for {
